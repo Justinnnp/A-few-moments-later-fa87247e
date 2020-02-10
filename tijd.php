@@ -1,37 +1,23 @@
 <?php
 
-foreach ($argv as $arr) {
-    $ltr = substr($arr, -1);
-    $nmr = explode(" ", $arr, 0);
 
-    foreach ($nmr as $nmrWaarde) {
-        $nmrGetal = substr($nmrWaarde, 0, -1);
-    }
-    $sArr [$ltr] = $nmrGetal;
-    
-    // print_r($sArr);
+    $values = explode(" ", $argv[1]);
+    $total = 0;
 
-    foreach ($sArr as $key => $value) {
-        for ($i = 0; $i < count($sArr); $i ++) {
-            switch ($ltr) {
-                case "s":
-                $s = (int) $sArr["s"];
+    foreach ($values as $value) {
+        switch (substr($value, -1)) {
+            case "s":
+                $total += substr($value, 0, -1);
             break;
-                case "m":
-                $m = (int) $sArr["m"];
+            case "m":
+                $total += substr($value, 0, -1) * 60;
             break;
             case "h":
-                $h = (int) $sArr["h"];
+                $total += substr($value, 0, -1) * 60 * 60;
             break;
             case "d":
-                $d = (int) $sArr["d"];
+                $total += substr($value, 0, -1) * 24 * 60 * 60;
             break;
-            }
         }
     }
-}
-$totalMinut = $m * 60;  
-$totalHour = $h * 60 * 60;
-$totalDay = $d * 24 * 60 * 60;
-$totalAll = $totalMinut + $totalHour + $totalDay + $s;
-echo $totalAll;
+    echo $total;
